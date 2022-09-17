@@ -31,7 +31,7 @@ back = (200, 255, 255)
 win_width, win_height = 600, 500
 window = display.set_mode((win_width, win_height))
 window.fill(back)
-#функія clock і тд
+#функія clock і прапорці для стану гри
 finish = False
 game = True
 clock = time.Clock()
@@ -54,13 +54,14 @@ while game:
     for e in event.get():
         if e.type == QUIT:
             game = False
+            #оновлення ракеток та м'яча
     if finish != True:
         window.fill(back)
         racket1.update_l()
         racket2.update_r()
         ball.rect.x += speed_x
         ball.rect.y += speed_y
-        
+      #collide
         if sprite.collide_rect(racket1, ball) or sprite.collide_rect(racket2, ball):
             speed_x *= -1
             speed_y *= -1
@@ -77,6 +78,6 @@ while game:
         racket1.reset()
         racket2.reset()
         ball.reset()
-        
+#оновлення для стану гри
     display.update()
     clock.tick(FPS)
